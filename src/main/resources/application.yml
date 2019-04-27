@@ -1,0 +1,42 @@
+server:
+  port: 8091
+spring: 
+  redis: 
+    database: 0  
+# Redis服务器地址  
+    host: 127.0.0.1 
+# Redis服务器连接端口  
+    port: 6379  
+# Redis服务器连接密码（默认为空）  
+    password: 123456 
+# 连接池最大连接数（使用负值表示没有限制）  
+#    pool:  
+#      max-active: 200  
+## 连接池最大阻塞等待时间（使用负值表示没有限制）  
+#      max-wait: -1  
+## 连接池中的最大空闲连接  
+#      max-idle: 10 
+## 连接池中的最小空闲连接  
+#      min-idle: 0  
+# 连接超时时间（毫秒）  
+    timeout: 1000 
+  #数据库连接信息
+  datasource:
+    url: jdbc:mysql://localhost:3306/login?useUnicode=true&characterEncoding=utf8&useSSL=false        #  数据库连接地址
+    type: com.alibaba.druid.pool.DruidDataSource  #  配置当前要使用的数据源的操作类型
+    #com.mysql.cj.jdbc.Driver 高版本的mysql
+    driver-class-name: com.mysql.jdbc.Driver    #  配置mysql的驱动程序类
+    username: root                                #  数据库用户名
+    password: 123456                              #  数据库密码
+#    filters: stat,wall,log4j                      #  配置druid过滤器，开启监控
+    dbcp2:                                        #  进行数据库连接池的配置
+      min-idle: 5                                 #  数据库连接池的最小维持连接数
+      initial-size: 5                             #  初始化提供的连接数
+      max-total: 5                                #  最大连接数
+      max-wait-millis: 200        
+mybatis: 
+  config-location: classpath:mybatis/mybatis.cfg.xml    #  mybatis主配置文件所在路径
+#  type-aliases-package:  com.likuncheng.entity   #  定义所有操作类的别名所在包
+  mapper-locations:  classpath:mybatis/mapper/*.xml     #  所有的mapper映射文件
+secretKey: JwtToken
+outTime: 900000

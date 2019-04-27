@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.likuncheng.mapper.UserMapper">
+
+    <!-- 新增用户 当然在这之前 还可以判断 电话号码已经被注册等 -->
+	<insert id="register" parameterType="user"
+		useGeneratedKeys="true" keyProperty="id">
+	      insert into `user`(userName,`passWord`,phone,role,permission)
+            VALUES (#{userName},#{passWord},#{phone},#{role},#{permission})	
+    </insert>
+
+    <!-- 用户登录 查询数据是否存在 返回用户id -->
+	<select id="login" parameterType="String" resultType="user">
+       select * from `user` where phone = #{phone} and `passWord` = #{passWord}
+	</select>
+	
+	<!-- 根据用户id进行查询用户信息 -->
+	<select id="getUserById" parameterType="java.lang.String" resultType="user">
+	  select * from `user` WHERE id = #{id}
+	</select>
+	
+	<!-- 根据用户电话号码查询用户信息 -->
+	<select id="getUserByPhone" parameterType="java.lang.String" resultType="user">
+	  select * from `user` WHERE phone = #{phone}
+	</select>
+	
+</mapper>
